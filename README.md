@@ -6,14 +6,14 @@ Self-Driving Car Engineer Nanodegree Program
 ---
 ## Rubric
 ### Describes model in detail
-Model use vehicle model, like Global Kinematic Model, to describe the state, actuators and how the state changes over time based on the previous state and current actuator inputs.
+1.Model use vehicle model, like Global Kinematic Model, to describe the state, actuators and how the state changes over time based on the previous state and current actuator inputs.
 here formula:
 
 ![alt text][image1]
 
 
 
-MPC is a QP problem and like PID controller. But the PID controller could try to compute a control input based on a future error, but without a vehicle model it's unlikely this will be accurate.
+2.MPC is a QP problem and like PID controller. But the PID controller could try to compute a control input based on a future error, but without a vehicle model it's unlikely this will be accurate.
 
 
 ### Timestep Length and Elapsed Duration (N & dt)

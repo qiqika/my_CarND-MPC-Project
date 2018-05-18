@@ -1,6 +1,8 @@
 # CarND-Controls-MPC
 Self-Driving Car Engineer Nanodegree Program
+
 [image1]: ./vehicle_model.png "formula"
+
 ---
 ## Rubric
 ### Describes model in detail

@@ -1,7 +1,27 @@
 # CarND-Controls-MPC
 Self-Driving Car Engineer Nanodegree Program
-
+[image1]: ./vehicle_model.png "formula"
 ---
+## Rubric
+### Describes model in detail
+Model use vehicle model, like Global Kinematic Model, to describe the state, actuators and how the state changes over time based on the previous state and current actuator inputs.
+here formula:
+
+![alt text][image1]
+
+
+
+MPC is a QP problem and like PID controller. But the PID controller could try to compute a control input based on a future error, but without a vehicle model it's unlikely this will be accurate.
+
+
+### Timestep Length and Elapsed Duration (N & dt)
+Timestep Length N and Elapsed Duration dt will effect on iteration times. 
+
+### Polynomial Fitting and MPC Preprocessing
+
+
+### Model Predictive Control with Latency
+
 
 ## Dependencies
 

@@ -20,7 +20,7 @@ here formula:
 Timestep Length N and Elapsed Duration dt will effect on iteration times. 
 
 ### Polynomial Fitting and MPC Preprocessing
-
+After get vehicle coordinates, model use polyfit() function to fit third-degree polynomial line. 
 
 ### Model Predictive Control with Latency
 

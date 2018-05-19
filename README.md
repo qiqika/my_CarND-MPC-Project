@@ -11,19 +11,22 @@ here formula:
 
 ![alt text][image1]
 
+note: the delta0 is opposed to real orientation, so sign is negative.
 
 
 2.MPC is a QP problem and like PID controller. But the PID controller could try to compute a control input based on a future error, but without a vehicle model it's unlikely this will be accurate.
 
 
 ### Timestep Length and Elapsed Duration (N & dt)
-Timestep Length N and Elapsed Duration dt will effect on iteration times. 
+Timestep Length N and Elapsed Duration dt will effect on constraint function iteration times.And the N determines the number of variables optimized by the MPC.Larger values of dt result in less frequent actuations, which makes it harder to accurately approximate a continuous reference trajectory. This is sometimes called "discretization error".
+
+when N is large, the car's steer change will become more fierce. and in the same N, the smaller dt will make predictive line  shorter.
 
 ### Polynomial Fitting and MPC Preprocessing
-After get vehicle coordinates, model use polyfit() function to fit third-degree polynomial line. 
+After get vehicle coordinates, model use polyfit() function to fit third-degree polynomial line. cte the cross-track error which comes from polyfit value and epsi the orientation error which comes from -atan() of polyfit value.
 
 ### Model Predictive Control with Latency
-
+By changing weight of  additions cost in cost function, it will help to control latency. And refer to the jeremy-shannon/CarND-MPC-Project , using (delta*v) cost can reduce cumulative error that may come from latency.
 
 ## Dependencies
 

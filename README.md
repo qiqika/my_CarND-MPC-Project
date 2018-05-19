@@ -14,7 +14,7 @@ here formula:
 note: the delta0 is opposed to real orientation, so sign is negative.
 
 
-2.MPC is a QP problem and like PID controller. But the PID controller could try to compute a control input based on a future error, but without a vehicle model it's unlikely this will be accurate.
+2.MPC is a QP problem and like PID controller. the PID controller could try to compute a control input based on a future error, but without a vehicle model it's unlikely this will be accurate.
 
 
 ### Timestep Length and Elapsed Duration (N & dt)

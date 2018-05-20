@@ -21,6 +21,12 @@ note: the delta0 is opposed to real orientation, so sign is negative.
 Timestep Length N and Elapsed Duration dt will effect on constraint function iteration times.And the N determines the number of variables optimized by the MPC.Larger values of dt result in less frequent actuations, which makes it harder to accurately approximate a continuous reference trajectory. This is sometimes called "discretization error".
 
 when N is large, the car's steer change will become more fierce. and in the same N, the smaller dt will make predictive line  shorter.
+After trying different values, you should also try to give the reasoning behind your values e.g. explaining why some values work better than others. You can try answering the following questions:
+
+Why smaller dt is better? (finer resolution)
+Why larger N isn't always better? (computational time)
+How does time horizon (N*dt) affect the predicted path? This relates to the car speed too.
+In general, smaller dt gives better accuracy but that will require higher N for given horizon (N*dt). However, increase N will result in longer computational time which effectively increase the latency. The most common choice of values is N=10 and dt=0.1.
 
 ### Polynomial Fitting and MPC Preprocessing
 After get vehicle coordinates, model use polyfit() function to fit third-degree polynomial line. cte the cross-track error which comes from polyfit value and epsi the orientation error which comes from -atan() of polyfit value.

@@ -34,6 +34,31 @@ After get vehicle coordinates, model use polyfit() function to fit third-degree 
 ### Model Predictive Control with Latency
 By changing weight of  additions cost in cost function, it will help to control latency. And refer to the jeremy-shannon/CarND-MPC-Project , using (delta*v) cost can reduce cumulative error that may come from latency.
 
+You incorporated latency simulation into your MPC model. Well done! However, this isn't ideal as the latency simulation kicks in only after the first value which is what we really interested about (that's why there are N states but N-1 actuator values because the very first actuator value is for the next timestep). There are a few ways to do this, the most common is to use kinematic equations to predict the states for after 100ms before sending them to MPC.The update can be placed before polynomial fitting using global map coordinate, or after polynomial fitting and use vehicle map coordinate.
+
+If you do the update after polynomial fitting, then this involves 2 steps:
+
+At current time t=0, your car's states are px=0, py=0, psi=0 right after converting to car coordinate. There you calcualte cte and epsi
+
+cte = desired_y - actual_y
+    = polyeval(coeffs,px)-py
+    = polyeval(coeffs,0) because px=py=0
+epsi =  actual psi-desired psi
+     = psi - atan(coeffs[1]+coeffs[2]*2*px+...) 
+     = -atan(coeffs[1])  because px=psi=0
+Now predict all the states for t=latency. You can simplify them further knowing some of the variables are 0.
+//  change of sign because turning left is negative sign in simulator but positive yaw for MPC
+double delta = -j[1]["steering_angle"]; 
+//to convert miles per hour to meter per second, and you should convert ref_v too
+v*=0.44704;
+psi = delta; // in coordinate now, so use steering angle to predict x and y
+px = px + v*cos(psi)*latency; 
+py = py + v*sin(psi)*latency;
+cte= cte + v*sin(epsi)*latency;
+epsi = epsi + v*delta*latency/Lf;
+psi = psi + v*delta*latency/Lf;
+v = v + a*latency;
+
 ## Dependencies
 
 * cmake >= 3.5

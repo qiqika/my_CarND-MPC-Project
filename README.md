@@ -34,7 +34,7 @@ After get vehicle coordinates, model use polyfit() function to fit third-degree 
 ### Model Predictive Control with Latency
 By changing weight of  additions cost in cost function, it will help to control latency. And refer to the jeremy-shannon/CarND-MPC-Project , using (delta*v) cost can reduce cumulative error that may come from latency.
 
-You incorporated latency simulation into your MPC model. Well done! However, this isn't ideal as the latency simulation kicks in only after the first value which is what we really interested about (that's why there are N states but N-1 actuator values because the very first actuator value is for the next timestep). There are a few ways to do this, the most common is to use kinematic equations to predict the states for after 100ms before sending them to MPC.The update can be placed before polynomial fitting using global map coordinate, or after polynomial fitting and use vehicle map coordinate.
+Monitor review: You incorporated latency simulation into your MPC model. Well done! However, this isn't ideal as the latency simulation kicks in only after the first value which is what we really interested about (that's why there are N states but N-1 actuator values because the very first actuator value is for the next timestep). There are a few ways to do this, the most common is to use kinematic equations to predict the states for after 100ms before sending them to MPC.The update can be placed before polynomial fitting using global map coordinate, or after polynomial fitting and use vehicle map coordinate.
 
 If you do the update after polynomial fitting, then this involves 2 steps:
 
